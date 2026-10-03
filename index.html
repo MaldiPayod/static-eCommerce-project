@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>astra.ph</title>
+  <meta name="description" content="astra.ph: everyday clothes with main-character energy.">
+
+  <!-- ito gagana if may internet but if none, font na nasa css magsshow-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="images/main.png">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <nav class="nav-inner" aria-label="Main navigation">
+
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#products">Products</a></li>
+      </ul>
+
+      <a href="#home" class="nav-logo"><img src="images/logo.png" alt="astra.ph"></a>
+
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#contact">Contacts</a></li>
+        </ul>
+
+        <!-- cart button + live item count -->
+        <button class="cart-btn" id="cartBtn" type="button" aria-label="Open cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 7h12l1.2 13H4.8L6 7Z"/>
+            <path d="M9 7V6a3 3 0 0 1 6 0v1"/>
+          </svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+
+    </nav>
+  </header>
+
+
+  <main>
+
+    <!-- =====================================================
+         1. HOME (page 1)
+         ===================================================== -->
+    <section class="slide slide-home" id="home" aria-labelledby="homeTitle">
+      <h1 class="sr-only" id="homeTitle">astra.ph: where stars meet style</h1>
+    </section>
+
+    <!-- =====================================================
+         2. ABOUT (page 2)
+         ===================================================== -->
+    <section class="slide slide-about" id="about" aria-labelledby="aboutTitle">
+      <h2 class="sr-only" id="aboutTitle">About astra.ph: only the good fits stay</h2>
+    </section>
+
+    <!-- =====================================================
+         3. PRODUCTS: chooser (page 3)
+         ===================================================== -->
+    <section class="slide slide-chooser" id="products" aria-labelledby="chooserTitle">
+      <h2 class="sr-only" id="chooserTitle">What are you looking for?</h2>
+
+      <div class="choices">
+        <a href="#tops" class="choice">
+          <img src="images/products/top-3.jpg" alt="">
+          <span class="choice-label">
+            <strong>Tops</strong>
+            <small>Shop Now!</small>
+          </span>
+        </a>
+
+        <a href="#bottoms" class="choice">
+          <img src="images/products/bottom-6.jpg" alt="">
+          <span class="choice-label">
+            <strong>Bottoms</strong>
+            <small>Shop Now!</small>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <!-- PRODUCTS: tops (page 4) -->
+    <section class="slide slide-products slide-tops" id="tops" aria-labelledby="topsTitle">
+      <h2 class="sr-only" id="topsTitle">Up in the Stars: tops</h2>
+      <div class="product-grid" id="topsGrid"></div>
+    </section>
+
+    <!-- PRODUCTS: bottoms (page 5) -->
+    <section class="slide slide-products slide-bottoms" id="bottoms" aria-labelledby="bottomsTitle">
+      <h2 class="sr-only" id="bottomsTitle">Down to Earth: bottoms</h2>
+      <div class="product-grid" id="bottomsGrid"></div>
+    </section>
+
+    <!-- =====================================================
+         4. REVIEWS (page 6)
+         ===================================================== -->
+    <section class="slide slide-reviews" id="reviews" aria-labelledby="reviewsTitle">
+      <h2 class="sr-only" id="reviewsTitle">Customer reviews</h2>
+
+      <div class="review-grid">
+        <article class="review-card">
+          <p class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</p>
+          <p class="review-text">wow ang solid ng quality and true to size! dumating in 3 days lang. will order again.</p>
+          <p class="review-author">Jennie K.</p>
+          <p class="review-item">Luna Striped Button-Up</p>
+        </article>
+
+        <article class="review-card">
+          <p class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</p>
+          <p class="review-text">uwu ajajaj cute ng star details in personn. this is so gen z coded. nacompliment nonstop</p>
+          <p class="review-author">Jungkook</p>
+          <p class="review-item">Orion Lace Wrap Jeans</p>
+        </article>
+
+        <article class="review-card">
+          <p class="stars" role="img" aria-label="4 out of 5 stars">★★★★<span class="star-off">★</span></p>
+          <p class="review-text">Neat ang packaging and worth the price ang quality. Bagay sa everyday fits.</p>
+          <p class="review-author">Arianna G.</p>
+          <p class="review-item">Dusk Stripe Long Sleeve</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         5. CONTACTS (page 7)
+         ===================================================== -->
+    <section class="slide slide-contact" id="contact" aria-labelledby="contactTitle">
+      <h2 class="sr-only" id="contactTitle">Reach for the stars: contact astra.ph</h2>
+ 
+      <div class="contact-links" id="contactLinks">
+        <a class="contact-link" href="https://facebook.com/melodynavarropayod" target="_blank" rel="noopener noreferrer" title="Facebook">
+          <img src="images/fb.jpg" alt="">
+          <span>Facebook</span>
+        </a>
+ 
+        <a class="contact-link" href="https://instagram.com/odwiee" target="_blank" rel="noopener noreferrer" title="Instagram">
+          <img src="images/ig.jpg" alt="">
+          <span>Instagram</span>
+        </a>
+ 
+        <a class="contact-link" href="mailto:payod.melody.navarro@gmail.com" title="Email">
+          <img src="images/mail.jpg" alt="">
+          <span>Email</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- =====================================================
+       PRODUCT DETAILS POPUP (when a product card is clicked)
+       ===================================================== -->
+  <div class="overlay" id="productOverlay" aria-hidden="true">
+    <div class="modal product-modal" role="dialog" aria-modal="true" aria-labelledby="pmName">
+      <button class="close-btn" type="button" data-close aria-label="Close">×</button>
+
+      <div class="pm-image">
+        <img id="pmImage" src="" alt="">
+      </div>
+
+      <div class="pm-info">
+        <h2 id="pmName"></h2>
+        <p class="pm-price" id="pmPrice"></p>
+        <p class="pm-desc" id="pmDesc"></p>
+
+        <div class="option-group">
+          <p class="option-label">Size</p>
+          <div class="options" id="pmSizes"></div>
+        </div>
+
+        <div class="option-group">
+          <p class="option-label">Color: <span id="pmColorName"></span></p>
+          <div class="options" id="pmColors"></div>
+        </div>
+
+        <button class="btn-primary" type="button" id="pmAddBtn">Add to cart</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =====================================================
+       CART PANEL (slides in from the roight)
+       ===================================================== -->
+  <div class="overlay overlay-cart" id="cartOverlay" aria-hidden="true">
+    <aside class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <div class="cart-header">
+        <h2 id="cartTitle">Your cart</h2>
+        <button class="close-btn" type="button" data-close aria-label="Close cart">×</button>
+      </div>
+
+      <div class="cart-body">
+        <p class="cart-empty" id="cartEmpty">
+          Your cart is empty. <a href="#products" data-close>Browse products</a>
+        </p>
+        <ul class="cart-items" id="cartItems"></ul>
+      </div>
+
+      <div class="cart-footer">
+        <div class="cart-total-row">
+          <span>Total</span>
+          <strong id="cartTotal">₱0</strong>
+        </div>
+        <button class="btn-primary btn-block" type="button" id="checkoutBtn" disabled>Checkout</button>
+      </div>
+    </aside>
+  </div>
+
+
+  <!-- =====================================================
+       CHECKOUT POPUP (customer details form tas a fake success message)
+       ===================================================== -->
+  <div class="overlay" id="checkoutOverlay" aria-hidden="true">
+    <div class="modal checkout-modal" role="dialog" aria-modal="true" aria-labelledby="coTitle">
+      <button class="close-btn" type="button" data-close aria-label="Close">×</button>
+
+      <!-- View 1: the form -->
+      <div id="checkoutView">
+        <h2 id="coTitle">Checkout</h2>
+
+        <form id="checkoutForm" novalidate>
+          <label class="field">
+            <span>Full name</span>
+            <input type="text" name="name" autocomplete="name" placeholder="Juan Dela Cruz">
+          </label>
+
+          <label class="field">
+            <span>Mobile number</span>
+            <input type="tel" name="phone" autocomplete="tel" placeholder="09171234567">
+          </label>
+
+          <label class="field">
+            <span>Delivery address</span>
+            <textarea name="address" rows="2" autocomplete="street-address" placeholder="House no., street, barangay, city, province"></textarea>
+          </label>
+
+          <fieldset class="field pay-field">
+            <legend>Payment method</legend>
+            <div class="pay-options">
+              <label class="pay-option">
+                <input type="radio" name="payment" value="cod" checked>
+                <span>Cash on delivery</span>
+              </label>
+              <label class="pay-option">
+                <input type="radio" name="payment" value="gcash">
+                <span>GCash</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="summary" id="coSummary"></div>
+
+          <p class="form-error" id="formError" role="alert"></p>
+
+          <button class="btn-primary btn-block" type="submit">Place order</button>
+        </form>
+      </div>
+
+      <!-- View 2: kumyare naplace order ahahah -->
+      <div id="successView" class="success-view" hidden>
+        <div class="success-star" aria-hidden="true">✦</div>
+        <h2>Order placed</h2>
+        <p id="successMsg"></p>
+        <p class="demo-note">This is a demo store, so no real payment or delivery happens.</p>
+        <button class="btn-primary" type="button" data-close>Keep browsing</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- short messages that pops up at the bottom of my heart  -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
