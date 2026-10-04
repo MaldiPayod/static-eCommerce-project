@@ -485,7 +485,7 @@ function showInquiryError(message) {
    (nasa Login.html & Login.js yung infos) */
 logoutBtn.addEventListener("click", () => {
   localStorage.removeItem("astra-session");
-  window.location.href = "0068PayodLogin.html";
+  window.location.href = "login.html";
 });
 
 

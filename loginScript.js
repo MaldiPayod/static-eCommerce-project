@@ -67,7 +67,7 @@ function startSession(account) {
     firstName: account.firstName,
     email: account.email
   }));
-  window.location.href = "0068PayodMyWebPage.html";
+  window.location.href = "index.html";
 }
 
 
