@@ -10,11 +10,25 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" href="images/main.png">
+  <link rel="icon" type="image/png" href="images/main.png">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="0068PayodStyle.css">
 </head>
 <body>
+
+  <!-- =====================================================
+       LOGIN GATE
+       This runs immediately, before the rest of the page shows.
+       If there's no "astra-session" saved in localStorage, it
+       means walang naka-login, kaya ipapadala muna papuntang
+       login page. (See 0068PayodLogin.js for how that session
+       gets created.)
+       ===================================================== -->
+  <script>
+    if (!localStorage.getItem("astra-session")) {
+      window.location.href = "0068PayodLogin.html";
+    }
+  </script>
 
   <header class="navbar">
     <nav class="nav-inner" aria-label="Main navigation">
@@ -31,6 +45,7 @@
         <ul class="nav-links">
           <li><a href="#reviews">Reviews</a></li>
           <li><a href="#contact">Contacts</a></li>
+          <li><button type="button" class="link-btn nav-logout" id="logoutBtn">Log out</button></li>
         </ul>
 
         <!-- cart button + live item count -->
@@ -134,23 +149,67 @@
          5. CONTACTS (page 7)
          ===================================================== -->
     <section class="slide slide-contact" id="contact" aria-labelledby="contactTitle">
-      <h2 class="sr-only" id="contactTitle">Reach for the stars: contact astra.ph</h2>
- 
-      <div class="contact-links" id="contactLinks">
-        <a class="contact-link" href="https://facebook.com/melodynavarropayod" target="_blank" rel="noopener noreferrer" title="Facebook">
-          <img src="images/fb.jpg" alt="">
-          <span>Facebook</span>
-        </a>
- 
-        <a class="contact-link" href="https://instagram.com/odwiee" target="_blank" rel="noopener noreferrer" title="Instagram">
-          <img src="images/ig.jpg" alt="">
-          <span>Instagram</span>
-        </a>
- 
-        <a class="contact-link" href="mailto:payod.melody.navarro@gmail.com" title="Email">
-          <img src="images/mail.jpg" alt="">
+      <div class="contact-wrap">
+
+        <!-- LEFT: heading, blurb, contact details, social icons -->
+        <div class="contact-info">
+          <h2 id="contactTitle">Reach for the Stars!</h2>
+          <p class="contact-sub">Questions about sizing, orders, or just wanna say hi? We're a message away.</p>
+
+          <div class="contact-detail">
+            <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 6h18v12H3V6Z"/>
+              <path d="M3 7l9 6 9-6"/>
+            </svg>
+            <span>payod.melody.navarro@gmail.com</span>
+          </div>
+
+          <div class="contact-detail">
+            <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.2 1L6.6 10.8Z"/>
+            </svg>
+            <span>0992 862 0509</span>
+          </div>
+
+          <div class="social-row">
+            <a class="social-icon" href="https://facebook.com/melodynavarropayod" target="_blank" rel="noopener noreferrer" title="Facebook">
+              <img src="images/fb.jpg" alt="Facebook">
+            </a>
+            <a class="social-icon" href="https://instagram.com/odwiee" target="_blank" rel="noopener noreferrer" title="Instagram">
+              <img src="images/ig.jpg" alt="Instagram">
+            </a>
+          </div>
+        </div>
+
+        <!-- RIGHT: the inquiry form (this is the "Inquiry using Email" requirement).
+             JS checks the fields before "sending" anything (see script). -->
+        <form class="inquiry-form" id="inquiryForm" novalidate>
+          <h3 class="inquiry-title">Send us an inquiry</h3>
+
+          <label class="field">
+            <span>Name</span>
+            <input type="text" name="name" placeholder="Your name" autocomplete="name">
+          </label>
+
+        <label class="field">
           <span>Email</span>
-        </a>
+          <input type="email" name="email" placeholder="you@email.com" autocomplete="email">
+        </label>
+
+        <label class="field">
+          <span>Message</span>
+          <textarea name="message" rows="3" placeholder="Ask us anything about sizing, orders, etc."></textarea>
+        </label>
+
+        <p class="form-error" id="inquiryError" role="alert"></p>
+
+        <button class="btn-primary" type="submit">Send inquiry</button>
+
+        <p class="inquiry-success" id="inquirySuccess" hidden>
+          Thanks! We'll reply to your email soon. ✦
+        </p>
+        </form>
+
       </div>
     </section>
 
@@ -190,7 +249,7 @@
 
 
   <!-- =====================================================
-       CART PANEL (slides in from the roight)
+       CART PANEL (slides in from the right)
        ===================================================== -->
   <div class="overlay overlay-cart" id="cartOverlay" aria-hidden="true">
     <aside class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
@@ -281,6 +340,6 @@
   <!-- short messages that pops up at the bottom of my heart  -->
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="script.js"></script>
+  <script src="0068PayodStyle.js"></script>
 </body>
 </html>

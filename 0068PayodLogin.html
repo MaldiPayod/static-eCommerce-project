@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log in | astra.ph</title>
+  <meta name="description" content="Log in or sign up to shop astra.ph.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/main.png">
+
+  <link rel="stylesheet" href="0068PayodStyle.css">
+</head>
+<body class="login-body">
+
+  <main class="login-page">
+    <div class="login-card">
+
+      <!-- Tabs: switch between the Log in view and the Sign up view.
+           Only CSS classes change here; both forms already exist in the
+           HTML, JS just shows one and hides the other. -->
+      <div class="login-tabs">
+        <button type="button" class="tab-btn active" id="tabLogin">Log in</button>
+        <button type="button" class="tab-btn" id="tabSignup">Sign up</button>
+      </div>
+
+      <!-- ============ LOG IN FORM ============ -->
+      <form id="loginForm" class="auth-form" novalidate>
+        <label class="field">
+          <span>Email</span>
+          <input type="email" name="email" placeholder="you@email.com" autocomplete="email">
+        </label>
+
+        <label class="field">
+          <span>Password</span>
+          <input type="password" name="password" placeholder="Enter your password" autocomplete="current-password">
+        </label>
+
+        <p class="form-error" id="loginError" role="alert"></p>
+
+        <button class="btn-primary btn-block" type="submit">Log in</button>
+
+        <p class="switch-text">
+          No account yet? <button type="button" class="link-btn" id="goSignup">Create one here.</button>
+        </p>
+      </form>
+
+      <!-- ============ SIGN UP FORM (hidden by default) ============ -->
+      <form id="signupForm" class="auth-form" novalidate hidden>
+        <div class="name-row">
+          <label class="field">
+            <span>First name</span>
+            <input type="text" name="firstName" placeholder="Juan" autocomplete="given-name">
+          </label>
+
+          <label class="field">
+            <span>Last name</span>
+            <input type="text" name="lastName" placeholder="Dela Cruz" autocomplete="family-name">
+          </label>
+        </div>
+
+        <label class="field">
+          <span>Email</span>
+          <input type="email" name="email" placeholder="you@email.com" autocomplete="email">
+        </label>
+
+        <label class="field">
+          <span>Password</span>
+          <input type="password" name="password" placeholder="At least 6 characters" autocomplete="new-password">
+        </label>
+
+        <label class="field">
+          <span>Confirm password</span>
+          <input type="password" name="confirmPassword" placeholder="Re-enter your password" autocomplete="new-password">
+        </label>
+
+        <p class="form-error" id="signupError" role="alert"></p>
+
+        <button class="btn-primary btn-block" type="submit">Sign up</button>
+
+        <p class="switch-text">
+          Already have an account? <button type="button" class="link-btn" id="goLogin">Log in</button>
+        </p>
+      </form>
+
+    </div>
+  </main>
+
+  <script src="0068PayodLogin.js"></script>
+</body>
+</html>

@@ -75,6 +75,19 @@ button {
   white-space: nowrap;
 }
 
+/* A button made to look like an underlined text link (used for "Sign up here",
+   "Log in", and the navbar "Log out" button) */
+.link-btn {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-weight: 700;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* ---------- 3. NAVBAR ---------- */
 .navbar {
   position: fixed;
@@ -98,6 +111,7 @@ button {
 
 .nav-links {
   display: flex;
+  align-items: center;
   gap: clamp(14px, 2.4vw, 40px);
 }
 
@@ -134,6 +148,13 @@ button {
 .nav-links a:hover::after,
 .nav-links a:focus-visible::after {
   transform: scaleX(1);
+}
+
+/* the "Log out" button sits inside .nav-links too, so it borrows the same look */
+.nav-logout {
+  color: var(--cream-light);
+  font-size: clamp(12px, 1.15vw, 19px);
+  text-decoration-color: rgba(248, 244, 238, 0.6);
 }
 
 .nav-logo {
@@ -238,6 +259,7 @@ button {
 }
 .slide-contact {
   background-image: url("images/contact.png");
+  padding-bottom: 7vw;   /* extra room now that the inquiry form sits below the icons */
 }
 .slide-products {
   padding: var(--products-top) 0 var(--products-bottom);
@@ -411,43 +433,109 @@ button {
   color: #7c5f51;
 }
 
-/* ---------- 8. CONTACT ---------- */
-.contact-links {
+/* ---------- 8. CONTACT ----------
+   No more background slide image here (it made the section too tall
+   and forced scrolling). Plain mauve color instead, with the text on
+   the left and the form on the right, so everything fits in one view. */
+.slide-contact {
+  background-image: none;
+  background-color: var(--mauve);
+  aspect-ratio: auto;          /* let the content decide the height, not a fixed 16:9 */
+  padding: 5vw 6vw;
   display: flex;
-  justify-content: center;
-  gap: 6vw;
-  width: 62vw;
-  margin: 0 auto;
-  padding-top: 35vw;   /* space under the slide title + subtext */
+  align-items: center;
 }
- 
-.contact-link {
+
+.contact-wrap {
+  display: flex;
+  align-items: center;
+  gap: 5vw;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ----- LEFT: heading, blurb, email/phone, social icons ----- */
+.contact-info {
+  flex: 1;
+  color: var(--cream-light);
+}
+.contact-info h2 {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: clamp(28px, 3.2vw, 48px);
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.contact-sub {
+  max-width: 42ch;
+  margin-bottom: 26px;
+  font-size: clamp(14px, 1.2vw, 18px);
+  opacity: 0.9;
+}
+
+.contact-detail {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+.detail-icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+}
+
+.social-row {
+  display: flex;
+  gap: 14px;
+  margin-top: 24px;
+}
+.social-icon {
+  display: block;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0.4vw 1vw rgba(0, 0, 0, 0.25);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.social-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.social-icon:hover,
+.social-icon:focus-visible {
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 0.6vw 1.4vw rgba(0, 0, 0, 0.3);
+}
+
+/* ----- RIGHT: the inquiry form, a cream card ----- */
+.inquiry-form {
+  flex: 1;
+  width: 100%;
+  padding: 2vw 2.2vw;
+  border-radius: 1.2vw;
+  background: var(--cream-light);
+  box-shadow: 0 0.6vw 1.6vw rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1vw;
-  color: var(--brown-dark);
-  text-decoration: none;
+  gap: 14px;
+}
+.inquiry-title {
   font-family: var(--font-head);
+  font-weight: 800;
+  font-size: clamp(18px, 1.8vw, 26px);
+  text-align: center;
+  margin-bottom: 4px;
+}
+.inquiry-success {
+  text-align: center;
   font-weight: 700;
-  font-size: clamp(14px, 1.4vw, 22px);
-}
- 
-.contact-link img {
-  display: block;
-  width: 9vw;
-  height: 9vw;
-  border-radius: 50%;          /* makes the square .jpg icons round */
-  object-fit: cover;
-  background: var(--sand);     /* shows if the icon file is missing */
-  box-shadow: 0 0.6vw 1.6vw rgba(74, 57, 49, 0.25);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
- 
-.contact-link:hover img,
-.contact-link:focus-visible img {
-  transform: translateY(-0.7vw) scale(1.06);
-  box-shadow: 0 1.2vw 2.4vw rgba(74, 57, 49, 0.35);
+  color: #4b7a5a;
 }
 
 /* ---------- 9. BUTTONS + POPUP BASE ---------- */
@@ -801,6 +889,8 @@ button {
   font-size: 15px;
 }
 .field input[type="text"],
+.field input[type="email"],
+.field input[type="password"],
 .field input[type="tel"],
 .field textarea {
   width: 100%;
@@ -938,7 +1028,86 @@ button {
   transform: translate(-50%, 0);
 }
 
-/* ---------- 14. SMALLER SCREENS ---------- */
+/* ---------- 14. LOGIN / SIGN UP PAGE ---------- */
+.login-body {
+  background: var(--cream);
+}
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 4vw 4vw 4vw 6vw;
+  background-image: url("images/login.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.login-card {
+  width: min(420px, 100%);
+  padding: 2.6vw 2.4vw;
+  border-radius: 24px;
+  background: var(--cream-light);
+  box-shadow: 0 1.4vw 3vw rgba(74, 57, 49, 0.3);
+  margin-left: 5vw;
+}
+
+/* the Log in / Sign up tab switcher */
+.login-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 22px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(74, 57, 49, 0.08);
+}
+.tab-btn {
+  flex: 1;
+  padding: 10px 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  font-weight: 700;
+  color: var(--brown-dark);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.tab-btn.active {
+  background: var(--brown-dark);
+  color: var(--cream-light);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* First name + Last name side by side */
+.name-row {
+  display: flex;
+  gap: 14px;
+}
+.name-row .field {
+  flex: 1;
+}
+
+.switch-text {
+  text-align: center;
+  font-size: 14px;
+}
+
+@media (max-width: 700px) {
+  .login-page {
+    padding: 6vw;
+    justify-content: center;
+    background-position: 75% center;
+  }
+  .login-card {
+    width: 100%;
+  }
+}
+
+/* ---------- 15. SMALLER SCREENS ---------- */
 @media (max-width: 800px) {
   :root {
     --content-top: 24vw;
@@ -982,6 +1151,30 @@ button {
     margin-top: 3vw;
   }
 
+  /* stack the contact text above the form instead of side-by-side */
+  .contact-wrap {
+    flex-direction: column;
+    gap: 7vw;
+  }
+  .contact-info {
+    text-align: center;
+  }
+  .contact-sub {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .contact-detail {
+    justify-content: center;
+  }
+  .social-row {
+    justify-content: center;
+  }
+
+  .inquiry-form {
+    padding: 5vw;
+    border-radius: 3vw;
+  }
+
   .product-modal {
     grid-template-columns: 1fr;
   }
@@ -1001,9 +1194,12 @@ button {
   .nav-inner {
     grid-template-columns: 1fr auto;
   }
+  .nav-logout {
+    font-size: 11px;
+  }
 }
 
-/* ---------- 15. RESPECT "REDUCE MOTION" SETTING ---------- */
+/* ---------- 16. RESPECT "REDUCE MOTION" SETTING ---------- */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1015,3 +1211,15 @@ button {
     transition: none !important;
   }
 }
+
+/*.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}*/

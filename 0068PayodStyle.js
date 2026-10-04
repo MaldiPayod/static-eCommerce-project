@@ -43,7 +43,7 @@ const products = [
     sizes: ["XS", "S", "M", "L"],
     colors: [{ name: "Denim blue", hex: "#5f7ea6" }, { name: "Washed grey", hex: "#8a97a8" }]
   },
- 
+
   // ----- BOTTOMS -----
   {
     id: "bottom-1", category: "bottoms", name: "Orion Lace Wrap Jeans", price: 1299,
@@ -95,9 +95,10 @@ const products = [
 const topsGrid = document.getElementById("topsGrid");
 const bottomsGrid = document.getElementById("bottomsGrid");
 
-// navbar cart
+// navbar cart + logout
 const cartBtn = document.getElementById("cartBtn");
 const cartCount = document.getElementById("cartCount");
+const logoutBtn = document.getElementById("logoutBtn");
 
 // cart panel
 const cartOverlay = document.getElementById("cartOverlay");
@@ -126,6 +127,11 @@ const coSummary = document.getElementById("coSummary");
 const formError = document.getElementById("formError");
 const successMsg = document.getElementById("successMsg");
 
+// inquiry form (Contacts section)
+const inquiryForm = document.getElementById("inquiryForm");
+const inquiryError = document.getElementById("inquiryError");
+const inquirySuccess = document.getElementById("inquirySuccess");
+
 // toast message
 const toast = document.getElementById("toast");
 
@@ -140,6 +146,11 @@ function formatPrice(amount) {
 // Find a product in the list using its id
 function getProduct(id) {
   return products.find((product) => product.id === id);
+}
+
+// A simple check for "does this look like an email?" (used here and on the login page)
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 function loadCart() {
@@ -445,6 +456,42 @@ function showFormError(message) {
 }
 
 
-/* ---------- 9. START EVERYTHING ---------- */
+/* ---------- 9. INQUIRY FORM (Contacts section) ----------
+   Static site lang tayo, so walang totoong email na nape-send.
+   JS validates the fields lang, then shows a fake success message. */
+inquiryForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const data = new FormData(inquiryForm);
+  const name = data.get("name").trim();
+  const email = data.get("email").trim();
+  const message = data.get("message").trim();
+
+  inquirySuccess.hidden = true;   // hide any old success message while we re-check
+
+  if (name === "") return showInquiryError("Enter your name.");
+  if (!isValidEmail(email)) return showInquiryError("Enter a valid email address.");
+  if (message.length < 5) return showInquiryError("Tell us a bit more in your message.");
+
+  inquiryError.textContent = "";
+  inquiryForm.reset();
+  inquirySuccess.hidden = false;
+});
+
+function showInquiryError(message) {
+  inquiryError.textContent = message;
+}
+
+
+/* ---------- 10. LOG OUT ----------
+   Clears the saved session and sends the shopper back to the login page.
+   (See 0068PayodLogin.html / 0068PayodLogin.js for how a session is made.) */
+logoutBtn.addEventListener("click", () => {
+  localStorage.removeItem("astra-session");
+  window.location.href = "0068PayodLogin.html";
+});
+
+
+/* ---------- 11. START EVERYTHING ---------- */
 renderProducts();
 renderCart();
