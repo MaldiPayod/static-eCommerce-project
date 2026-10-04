@@ -1039,7 +1039,7 @@ button {
   border-radius: 24px;
   background: var(--cream-light);
   box-shadow: 0 1.4vw 3vw rgba(74, 57, 49, 0.3);
-  margin-left: 5vw;
+  margin-left: 8vw;
 }
 
 /* the login/signup tab switcher */
