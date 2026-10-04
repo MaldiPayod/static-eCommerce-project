@@ -1,8 +1,8 @@
-/* ---------- 1. VARIABLES (change colors/spacing here) ---------- */
+/* @@@@@@@@@@@@@@@@@ 1. VARIABLES (colors & spacing here) @@@@@@@@@@@@@@@@@ */
 :root {
   --brown-dark: #4a3931; /* main text + dark buttons */
   --mauve: #9a7b6c; /* navbar color */
-  --cream: #eaded4; /* slide background color (fallback) */
+  --cream: #eaded4; /* slide background color (fallback lang) */
   --cream-light: #f8f4ee; /* cards, popups */
   --sand: #d9c8bb; /* image placeholders */
   --star: #d99a2b; /* review stars */
@@ -14,11 +14,11 @@
   --nav-h: clamp(56px, 5.84vw, 100px);
   --content-top: 16vw; /* space under the slide title (chooser, reviews) */
   --products-top: 16vw; /* space under the slide title (tops, bottoms) */
-  --products-bottom: 12vw; /* space above the bottom wave/marquee */
+  --products-bottom: 12vw; /* space above the bottom waves */
   --grid-w: 58vw; /* width of the cards area */
 }
 
-/* ---------- 2. BASE ---------- */
+/* @@@@@@@@@@@@@@@@@ 2. BASE @@@@@@@@@@@@@@@@@ */
 *,
 *::before,
 *::after {
@@ -29,7 +29,7 @@
 
 html {
   scroll-behavior: smooth; /* makes nav links + chooser cards scroll smoothly */
-  scrollbar-gutter: stable; /* stops the page from jumping when popups lock scrolling */
+  scrollbar-gutter: stable; /* stops the page from jumping pag yung popups nilock scrolling */
 }
 
 body {
@@ -65,7 +65,7 @@ button {
   outline-offset: 3px;
 }
 
-/* Text that is only for screen readers/SEO (the real text is inside the slide images) */
+/* Text only for screen readers/SEO (the real text is inside the slide images) */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -75,8 +75,7 @@ button {
   white-space: nowrap;
 }
 
-/* A button made to look like an underlined text link (used for "Sign up here",
-   "Log in", and the navbar "Log out" button) */
+/* button n may underlined text link (sa sign up, log in, log out) */
 .link-btn {
   border: 0;
   background: none;
@@ -88,7 +87,7 @@ button {
   text-underline-offset: 3px;
 }
 
-/* ---------- 3. NAVBAR ---------- */
+/* @@@@@@@@@@@@@@@@@ 3. NAVBAR @@@@@@@@@@@@@@@@@ */
 .navbar {
   position: fixed;
   top: 0;
@@ -149,8 +148,6 @@ button {
 .nav-links a:focus-visible::after {
   transform: scaleX(1);
 }
-
-/* the "Log out" button sits inside .nav-links too, so it borrows the same look */
 .nav-logout {
   color: var(--cream-light);
   font-size: clamp(12px, 1.15vw, 19px);
@@ -224,11 +221,11 @@ button {
   }
 }
 
-/* ---------- 4. SLIDES  ---------- */
+/* @@@@@@@@@@@@@@@@@ 4. SLIDES (bg imgs) @@@@@@@@@@@@@@@@@ */
 .slide {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9; /* same ratio as the Canva page */
+  aspect-ratio: 16 / 9; 
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center top;
@@ -257,15 +254,11 @@ button {
   background-image: url("images/reviews.png");
   padding-top: var(--content-top);
 }
-.slide-contact {
-  background-image: url("images/contact.png");
-  padding-bottom: 7vw;   /* extra room now that the inquiry form sits below the icons */
-}
 .slide-products {
   padding: var(--products-top) 0 var(--products-bottom);
 }
 
-/* ---------- 5. PRODUCT CHOOSER (Tops / Bottoms) ---------- */
+/* @@@@@@@@@@@@@@@@@ 5. PRODUCT CHOOSER (Tops or Bottoms) @@@@@@@@@@@@@@@@@ */
 .choices {
   display: flex;
   justify-content: center;
@@ -330,7 +323,7 @@ button {
   font-weight: 600;
 }
 
-/* ---------- 6. PRODUCT CARDS ---------- */
+/* @@@@@@@@@@@@@@@@@ 6. PRODUCT CARDS @@@@@@@@@@@@@@@@@ */
 .product-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -392,7 +385,7 @@ button {
   color: #7c5f51;
 }
 
-/* ---------- 7. REVIEWS ---------- */
+/* @@@@@@@@@@@@@@@@@ 7. REVIEWS @@@@@@@@@@@@@@@@@ */
 .review-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -433,14 +426,11 @@ button {
   color: #7c5f51;
 }
 
-/* ---------- 8. CONTACT ----------
-   No more background slide image here (it made the section too tall
-   and forced scrolling). Plain mauve color instead, with the text on
-   the left and the form on the right, so everything fits in one view. */
+/* @@@@@@@@@@@@@@@@@ 8. CONTACT @@@@@@@@@@@@@@@@@ */
 .slide-contact {
   background-image: none;
   background-color: var(--mauve);
-  aspect-ratio: auto;          /* let the content decide the height, not a fixed 16:9 */
+  aspect-ratio: auto; 
   padding: 5vw 6vw;
   display: flex;
   align-items: center;
@@ -455,7 +445,7 @@ button {
   margin: 0 auto;
 }
 
-/* ----- LEFT: heading, blurb, email/phone, social icons ----- */
+/* ----- LEFT  ----- */
 .contact-info {
   flex: 1;
   color: var(--cream-light);
@@ -513,7 +503,7 @@ button {
   box-shadow: 0 0.6vw 1.4vw rgba(0, 0, 0, 0.3);
 }
 
-/* ----- RIGHT: the inquiry form, a cream card ----- */
+/* ----- RIGHT (form) ----- */
 .inquiry-form {
   flex: 1;
   width: 100%;
@@ -538,7 +528,7 @@ button {
   color: #4b7a5a;
 }
 
-/* ---------- 9. BUTTONS + POPUP BASE ---------- */
+/* @@@@@@@@@@@@@@@@@ 9. BUTTONS + POPUP BASE @@@@@@@@@@@@@@@@@ */
 .btn-primary {
   padding: 14px 30px;
   border: 0;
@@ -566,7 +556,7 @@ button {
   width: 100%;
 }
 
-/* The dark screen behind a popup. Hidden until it gets the class "open". */
+/* magdadark yung likod ng pop up cards. hidden until it gets the class "open" */
 .overlay {
   position: fixed;
   inset: 0;
@@ -587,7 +577,7 @@ button {
   visibility: visible;
 }
 
-/* The popup box zooms in when the overlay opens */
+/* pop up effect */
 .modal {
   position: relative;
   max-height: 92vh;
@@ -621,10 +611,10 @@ button {
 }
 .close-btn:hover {
   background: rgba(74, 57, 49, 0.2);
-  transform: rotate(90deg);
+  transform: rotate(90deg); /* nagrorotate yung X */
 }
 
-/* ---------- 10. PRODUCT DETAILS POPUP ---------- */
+/* @@@@@@@@@@@@@@@@@ 10. PRODUCT DETAILS POPUP @@@@@@@@@@@@@@@@@ */
 .product-modal {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -711,7 +701,7 @@ button {
   margin-top: 6px;
 }
 
-/* ---------- 11. CART PANEL ---------- */
+/* @@@@@@@@@@@@@@@@@ 11. CART PANEL @@@@@@@@@@@@@@@@@ */
 .overlay-cart {
   align-items: stretch;
   justify-content: flex-end;
@@ -811,7 +801,7 @@ button {
   height: 18px;
 }
 
-/* quantity: [ - 1 + ] */
+/* quantity (may + -) */
 .qty {
   display: flex;
   align-items: center;
@@ -858,7 +848,7 @@ button {
   font-size: 26px;
 }
 
-/* ---------- 12. CHECKOUT POPUP ---------- */
+/* @@@@@@@@@@@@@@@@@ 12. CHECKOUT POPUP @@@@@@@@@@@@@@@@@ */
 .checkout-modal {
   width: min(560px, 94vw);
   padding: 36px 32px 30px;
@@ -909,7 +899,7 @@ button {
   box-shadow: 0 0 0 3px rgba(154, 123, 108, 0.3);
 }
 
-/* payment choices look like pills; the real radio button is hidden */
+/* payment */
 .pay-options {
   display: flex;
   flex-wrap: wrap;
@@ -1004,7 +994,7 @@ button {
   }
 }
 
-/* ---------- 13. TOAST ("Added to cart") ---------- */
+/* @@@@@@@@@@@@@@@@@ 13. TOAST (mssgs like "added to cart") @@@@@@@@@@@@@@@@@ */
 .toast {
   position: fixed;
   left: 50%;
@@ -1028,7 +1018,7 @@ button {
   transform: translate(-50%, 0);
 }
 
-/* ---------- 14. LOGIN / SIGN UP PAGE ---------- */
+/* @@@@@@@@@@@@@@@@@ 14. LOGIN/SIGN UP PAGE @@@@@@@@@@@@@@@@@ */
 .login-body {
   background: var(--cream);
 }
@@ -1052,7 +1042,7 @@ button {
   margin-left: 5vw;
 }
 
-/* the Log in / Sign up tab switcher */
+/* the login/signup tab switcher */
 .login-tabs {
   display: flex;
   gap: 8px;
@@ -1082,7 +1072,7 @@ button {
   gap: 16px;
 }
 
-/* First name + Last name side by side */
+/* magkatabing first at last name */
 .name-row {
   display: flex;
   gap: 14px;
@@ -1107,7 +1097,7 @@ button {
   }
 }
 
-/* ---------- 15. SMALLER SCREENS ---------- */
+/* @@@@@@@@@@@@@@@@@ 15. FOR SMALLER SCREENS @@@@@@@@@@@@@@@@@ */
 @media (max-width: 800px) {
   :root {
     --content-top: 24vw;
@@ -1199,7 +1189,7 @@ button {
   }
 }
 
-/* ---------- 16. RESPECT "REDUCE MOTION" SETTING ---------- */
+/* @@@@@@@@@@@@@@@@@ 16. REDUCE MOTION @@@@@@@@@@@@@@@@@ */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1211,15 +1201,3 @@ button {
     transition: none !important;
   }
 }
-
-/*.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition:
-    opacity 0.6s ease,
-    transform 0.6s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}*/

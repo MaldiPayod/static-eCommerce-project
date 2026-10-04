@@ -6,7 +6,7 @@
   <title>astra.ph</title>
   <meta name="description" content="astra.ph: everyday clothes with main-character energy.">
 
-  <!-- ito gagana if may internet but if none, font na nasa css magsshow-->
+  <!-- ito gagana if may internet. but if none, font na nasa css magsshow-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
@@ -16,14 +16,11 @@
 </head>
 <body>
 
-  <!-- =====================================================
+  <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
        LOGIN GATE
-       This runs immediately, before the rest of the page shows.
-       If there's no "astra-session" saved in localStorage, it
-       means walang naka-login, kaya ipapadala muna papuntang
-       login page. (See 0068PayodLogin.js for how that session
-       gets created.)
-       ===================================================== -->
+       ito magrurun firstt. pag walang astra-session saved sa localStorage, it
+       means walang nakalogin kaya kaya dito muna dadalhin (nasa login.js yung info)
+       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
   <script>
     if (!localStorage.getItem("astra-session")) {
       window.location.href = "0068PayodLogin.html";
@@ -41,7 +38,7 @@
 
       <a href="#home" class="nav-logo"><img src="images/logo.png" alt="astra.ph"></a>
 
-      <div class="nav-right">
+      <div class="nav-right"> <!-- hinati ko -->
         <ul class="nav-links">
           <li><a href="#reviews">Reviews</a></li>
           <li><a href="#contact">Contacts</a></li>
@@ -52,7 +49,7 @@
         <button class="cart-btn" id="cartBtn" type="button" aria-label="Open cart">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M6 7h12l1.2 13H4.8L6 7Z"/>
-            <path d="M9 7V6a3 3 0 0 1 6 0v1"/>
+            <path d="M9 7V6a3 3 0 0 1 6 0v1"/> <!-- icon -->
           </svg>
           <span class="cart-count" id="cartCount">0</span>
         </button>
@@ -64,29 +61,29 @@
 
   <main>
 
-    <!-- =====================================================
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
          1. HOME (page 1)
-         ===================================================== -->
+         @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
     <section class="slide slide-home" id="home" aria-labelledby="homeTitle">
       <h1 class="sr-only" id="homeTitle">astra.ph: where stars meet style</h1>
     </section>
 
-    <!-- =====================================================
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
          2. ABOUT (page 2)
-         ===================================================== -->
+         @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
     <section class="slide slide-about" id="about" aria-labelledby="aboutTitle">
       <h2 class="sr-only" id="aboutTitle">About astra.ph: only the good fits stay</h2>
     </section>
 
-    <!-- =====================================================
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
          3. PRODUCTS: chooser (page 3)
-         ===================================================== -->
+         @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
     <section class="slide slide-chooser" id="products" aria-labelledby="chooserTitle">
       <h2 class="sr-only" id="chooserTitle">What are you looking for?</h2>
 
       <div class="choices">
         <a href="#tops" class="choice">
-          <img src="images/products/top-3.jpg" alt="">
+          <img src="images/products/top-3.jpg" alt="Click to shop tops">
           <span class="choice-label">
             <strong>Tops</strong>
             <small>Shop Now!</small>
@@ -94,7 +91,7 @@
         </a>
 
         <a href="#bottoms" class="choice">
-          <img src="images/products/bottom-6.jpg" alt="">
+          <img src="images/products/bottom-6.jpg" alt="Click to shop bottoms">
           <span class="choice-label">
             <strong>Bottoms</strong>
             <small>Shop Now!</small>
@@ -115,9 +112,9 @@
       <div class="product-grid" id="bottomsGrid"></div>
     </section>
 
-    <!-- =====================================================
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
          4. REVIEWS (page 6)
-         ===================================================== -->
+         @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
     <section class="slide slide-reviews" id="reviews" aria-labelledby="reviewsTitle">
       <h2 class="sr-only" id="reviewsTitle">Customer reviews</h2>
 
@@ -145,13 +142,13 @@
       </div>
     </section>
 
-    <!-- =====================================================
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
          5. CONTACTS (page 7)
-         ===================================================== -->
+         @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
     <section class="slide slide-contact" id="contact" aria-labelledby="contactTitle">
       <div class="contact-wrap">
 
-        <!-- LEFT: heading, blurb, contact details, social icons -->
+        <!-- LEFT texts -->
         <div class="contact-info">
           <h2 id="contactTitle">Reach for the Stars!</h2>
           <p class="contact-sub">Questions about sizing, orders, or just wanna say hi? We're a message away.</p>
@@ -181,8 +178,7 @@
           </div>
         </div>
 
-        <!-- RIGHT: the inquiry form (this is the "Inquiry using Email" requirement).
-             JS checks the fields before "sending" anything (see script). -->
+        <!-- RIGHT inquiry form -->
         <form class="inquiry-form" id="inquiryForm" novalidate>
           <h3 class="inquiry-title">Send us an inquiry</h3>
 
@@ -216,9 +212,9 @@
   </main>
 
 
-  <!-- =====================================================
+  <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
        PRODUCT DETAILS POPUP (when a product card is clicked)
-       ===================================================== -->
+       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
   <div class="overlay" id="productOverlay" aria-hidden="true">
     <div class="modal product-modal" role="dialog" aria-modal="true" aria-labelledby="pmName">
       <button class="close-btn" type="button" data-close aria-label="Close">×</button>
@@ -248,9 +244,9 @@
   </div>
 
 
-  <!-- =====================================================
+  <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
        CART PANEL (slides in from the right)
-       ===================================================== -->
+       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
   <div class="overlay overlay-cart" id="cartOverlay" aria-hidden="true">
     <aside class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
       <div class="cart-header">
@@ -276,9 +272,9 @@
   </div>
 
 
-  <!-- =====================================================
+  <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
        CHECKOUT POPUP (customer details form tas a fake success message)
-       ===================================================== -->
+       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
   <div class="overlay" id="checkoutOverlay" aria-hidden="true">
     <div class="modal checkout-modal" role="dialog" aria-modal="true" aria-labelledby="coTitle">
       <button class="close-btn" type="button" data-close aria-label="Close">×</button>
@@ -325,7 +321,7 @@
         </form>
       </div>
 
-      <!-- View 2: kumyare naplace order ahahah -->
+      <!-- View 2: kumyare naplace order -->
       <div id="successView" class="success-view" hidden>
         <div class="success-star" aria-hidden="true">✦</div>
         <h2>Order placed</h2>

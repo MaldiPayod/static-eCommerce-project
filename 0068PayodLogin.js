@@ -1,22 +1,8 @@
-/* ==========================================================
-   0068PayodLogin.js
-
-   This is a STATIC site, so there's no real server or database.
-   To still make Sign Up / Log In "work", we fake it using
-   localStorage (the same browser storage we used for the cart):
-
-   - "astra-accounts"  -> an array of every account that signed up,
-                          e.g. [{firstName, lastName, email, password}, ...]
-   - "astra-session"   -> set when someone is currently logged in.
-                          0068PayodMyWebPage.html checks for this
-                          and redirects back here if it's missing.
-
-   This is NOT secure (passwords aren't even encrypted), but it is
-   enough to satisfy "validation only using javascript" for a demo.
-   ========================================================== */
+/* for login page to work kumyare, wala real database cuz we fake it using localStorage 
+(the same browser storage we used for the cart) (astra-accounts & astra-session) */
 
 
-/* ---------- 1. GRAB THE HTML ELEMENTS ---------- */
+/* @@@@@@@@@@@@@@@@@ 1. GRAB THE HTML ELEMENTS @@@@@@@@@@@@@@@@@ */
 const tabLogin = document.getElementById("tabLogin");
 const tabSignup = document.getElementById("tabSignup");
 
@@ -30,9 +16,8 @@ const goSignup = document.getElementById("goSignup");
 const goLogin = document.getElementById("goLogin");
 
 
-/* ---------- 2. SWITCHING BETWEEN "LOG IN" AND "SIGN UP" ----------
-   Both forms already exist in the HTML. We just show one and hide
-   the other, and move the "active" highlight on the tabs. */
+/* @@@@@@@@@@@@@@@@@ 2. SWITCHING BETWEEN LOGIN/SIGNUP @@@@@@@@@@@@@@@@@
+   ito magtatago/maglalabas ng tab */
 function showLogin() {
   loginForm.hidden = false;
   signupForm.hidden = true;
@@ -51,18 +36,18 @@ function showSignup() {
 
 tabLogin.addEventListener("click", showLogin);
 tabSignup.addEventListener("click", showSignup);
-goSignup.addEventListener("click", showSignup);   // the "Sign up here" link inside the login form
-goLogin.addEventListener("click", showLogin);     // the "Log in" link inside the signup form
+goSignup.addEventListener("click", showSignup);   // mga button link
+goLogin.addEventListener("click", showLogin);     
 
 
-/* ---------- 3. HELPERS ---------- */
+/* @@@@@@@@@@@@@@@@@ 3. NAGVAVALIDATE @@@@@@@@@@@@@@@@@ */
 
 // a simple check for "does this look like an email?"
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-// read the saved accounts list (or an empty list if walang pa laman)
+// read the saved accounts list,, or an empty list if wala pa laman
 function loadAccounts() {
   try {
     const saved = JSON.parse(localStorage.getItem("astra-accounts"));
@@ -76,8 +61,7 @@ function saveAccounts(accounts) {
   localStorage.setItem("astra-accounts", JSON.stringify(accounts));
 }
 
-// after a successful login/signup: remember who's logged in, then
-// send them to the main site
+// after successful login/signup, tp sa main dashboard
 function startSession(account) {
   localStorage.setItem("astra-session", JSON.stringify({
     firstName: account.firstName,
@@ -87,9 +71,9 @@ function startSession(account) {
 }
 
 
-/* ---------- 4. SIGN UP ---------- */
+/* @@@@@@@@@@@@@@@@@ 4. SIGN UP @@@@@@@@@@@@@@@@@ */
 signupForm.addEventListener("submit", (event) => {
-  event.preventDefault();   // stop the browser from reloading the page
+  event.preventDefault();  // stop the browser from reloading the page
 
   const data = new FormData(signupForm);
   const firstName = data.get("firstName").trim();
@@ -118,7 +102,7 @@ signupForm.addEventListener("submit", (event) => {
     return (signupError.textContent = "That email is already registered. Try logging in instead.");
   }
 
-  // all good: save the new account, then log them in right away
+  // if all goods: save the new account, then log them in right away
   const newAccount = { firstName, lastName, email, password };
   accounts.push(newAccount);
   saveAccounts(accounts);
@@ -128,7 +112,7 @@ signupForm.addEventListener("submit", (event) => {
 });
 
 
-/* ---------- 5. LOG IN ---------- */
+/* @@@@@@@@@@@@@@@@@ 5. LOG IN @@@@@@@@@@@@@@@@@ */
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
 

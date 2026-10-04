@@ -1,6 +1,6 @@
-/* ---------- 1. PRODUCT DATA ---------- */
+/* @@@@@@@@@@@@@@@@@ 1. PRODUCT INFOS @@@@@@@@@@@@@@@@@ */
 const products = [
-  // ----- TOPS -----
+  // TOPS 
   {
     id: "top-1", category: "tops", name: "Nova Gingham Blouse", price: 799,
     image: "images/products/top-1.jpg",
@@ -44,7 +44,7 @@ const products = [
     colors: [{ name: "Denim blue", hex: "#5f7ea6" }, { name: "Washed grey", hex: "#8a97a8" }]
   },
 
-  // ----- BOTTOMS -----
+  // BOTTOMS 
   {
     id: "bottom-1", category: "bottoms", name: "Orion Lace Wrap Jeans", price: 1299,
     image: "images/products/bottom-1.jpg",
@@ -90,7 +90,7 @@ const products = [
 ];
 
 
-/* ---------- 2. GRAB THE HTML ELEMENTS ----------
+/* @@@@@@@@@@@@@@@@@ 2. GRAB HTML ELEMENTS @@@@@@@@@@@@@@@@@
    getElementById finds an element by its id="..." in index.html. */
 const topsGrid = document.getElementById("topsGrid");
 const bottomsGrid = document.getElementById("bottomsGrid");
@@ -127,28 +127,28 @@ const coSummary = document.getElementById("coSummary");
 const formError = document.getElementById("formError");
 const successMsg = document.getElementById("successMsg");
 
-// inquiry form (Contacts section)
+// inquiry form (sa contacts)
 const inquiryForm = document.getElementById("inquiryForm");
 const inquiryError = document.getElementById("inquiryError");
 const inquirySuccess = document.getElementById("inquirySuccess");
 
-// toast message
+// toast mssgs
 const toast = document.getElementById("toast");
 
 
-/* ---------- 3. HELPER FUNCTIONS ---------- */
+/* @@@@@@@@@@@@@@@@@ 3. ADDITIONAL FUNCTIONS/NAGVAVALIDATE @@@@@@@@@@@@@@@@@ */
 
-// 1199 -> "₱1,199"
+// peso sign
 function formatPrice(amount) {
   return "₱" + amount.toLocaleString("en-PH");
 }
 
-// Find a product in the list using its id
+// find a product in the list using its id
 function getProduct(id) {
   return products.find((product) => product.id === id);
 }
 
-// A simple check for "does this look like an email?" (used here and on the login page)
+// ccheck if tamang format ng email yung ininput ng user
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
@@ -159,7 +159,7 @@ function loadCart() {
     if (!Array.isArray(saved)) return [];
     return saved.filter((item) => getProduct(item.id) && item.qty > 0);
   } catch (error) {
-    return [];   // nothing saved yet, or the saved data is broken
+    return [];   // if nothing is saved yet, or broken
   }
 }
 
@@ -167,7 +167,7 @@ function saveCart() {
   try {
     localStorage.setItem("astra-cart", JSON.stringify(cart));
   } catch (error) {
-    // Storage can be blocked (private mode). The cart still works, it just won't be remembered.
+    // since storage can be blocked (private mode). cart still works, di lang remembered
   }
 }
 
@@ -177,19 +177,18 @@ function getCartTotal() {
   return cart.reduce((sum, item) => sum + getProduct(item.id).price * item.qty, 0);
 }
 
-// pop up small message at the bottom for 3 seconds
+// pop up small message at the bottom for 5 seconds
 let toastTimer;
 function showToast(message) {
   toast.textContent = message;
   toast.classList.add("show");
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove("show"), 3000);
+  toastTimer = setTimeout(() => toast.classList.remove("show"), 5000);
 }
 
 
-/* ---------- 4. POPUPS ----------
-   A popup is shown when its ".overlay" has the class "open"
-   (the CSS handles the fade and zoom). */
+/* @@@@@@@@@@@@@@@@@ 4. POPUPS @@@@@@@@@@@@@@@@@
+   shown kapag may class na "open" */
 function openOverlay(overlay) {
   overlay.classList.add("open");
   overlay.setAttribute("aria-hidden", "false");
@@ -203,13 +202,13 @@ function closeOverlay(overlay) {
   overlay.classList.remove("open");
   overlay.setAttribute("aria-hidden", "true");
 
-  // only unlock scrolling if no other popup is still open
+  // only unlock scrolling if wala na nakapop up
   if (!document.querySelector(".overlay.open")) {
     document.body.classList.remove("no-scroll");
   }
 }
 
-// every popup closes when you click the dark area outside it or any [data-close] button
+// magcclose rin pop up if clinick outside the card (dark area)
 document.querySelectorAll(".overlay").forEach((overlay) => {
   overlay.addEventListener("click", (event) => {
     if (event.target === overlay || event.target.closest("[data-close]")) {
@@ -218,7 +217,7 @@ document.querySelectorAll(".overlay").forEach((overlay) => {
   });
 });
 
-// ...and pag you press the Escape key
+// .+++ pag clinick ESC key
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     document.querySelectorAll(".overlay.open").forEach(closeOverlay);
@@ -226,8 +225,8 @@ document.addEventListener("keydown", (event) => {
 });
 
 
-/* ---------- 5. SHOW THE PRODUCT CARDS ----------
-   For every product, build a card and put it in the right grid. */
+/* @@@@@@@@@@@@@@@@@ 5. SHOW THE PRODUCT CARDS @@@@@@@@@@@@@@@@@
+   every product has a card na mapupunta sa right grid. */
 function renderProducts() {
   products.forEach((product) => {
     const grid = product.category === "tops" ? topsGrid : bottomsGrid;
@@ -251,14 +250,14 @@ topsGrid.addEventListener("click", handleCardClick);
 bottomsGrid.addEventListener("click", handleCardClick);
 
 
-/* ---------- 6. PRODUCT DETAILS POPUP ---------- */
+/* @@@@@@@@@@@@@@@@@ 6. PRODUCT DETAILS POPUP @@@@@@@@@@@@@@@@@ */
 let currentProduct = null;
 let selectedSize = null;
 let selectedColor = null;
 
 function openProductModal(id) {
   currentProduct = getProduct(id);
-  selectedSize = currentProduct.sizes[0];        // pick the first size + color by default
+  selectedSize = currentProduct.sizes[0]; // automatic nasa first size & color na option
   selectedColor = currentProduct.colors[0].name;
 
   pmImage.src = currentProduct.image;
@@ -271,7 +270,7 @@ function openProductModal(id) {
   openOverlay(productOverlay);
 }
 
-// draw the size buttons and color circles.the selected ones get the class "selected".
+// color/size options wherein the selected ones get the class "selected"
 function renderOptions() {
   pmSizes.innerHTML = currentProduct.sizes.map((size) => `
     <button type="button" class="opt-btn ${size === selectedSize ? "selected" : ""}"
@@ -307,10 +306,9 @@ pmAddBtn.addEventListener("click", () => {
 });
 
 
-/* ---------- 7. THE CART ---------- */
+/* @@@@@@@@@@@@@@@@@ 7. THE CART @@@@@@@@@@@@@@@@@ */
 
-// Add one item. If the same product + size + color is already there,
-// just increase its qty. Otherwise add a new row.
+// add one item. if the same product + size + color is added already plus sa qnty lang. if not, add a new row lang.
 function addToCart(id, size, color) {
   const existing = cart.find((item) => item.id === id && item.size === size && item.color === color);
 
@@ -333,7 +331,7 @@ function bumpCartBadge() {
   cartCount.classList.add("bump");
 }
 
-// redraw everything that shows the cart: the number, the list, and the total
+// redraw everything that shows the cart: the number, the list, and the total (if uulit)
 function renderCart() {
   const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
   cartCount.textContent = totalQty;
@@ -393,7 +391,7 @@ cartItemsEl.addEventListener("click", (event) => {
 cartBtn.addEventListener("click", () => openOverlay(cartOverlay));
 
 
-/* ---------- 8. CHECKOUT ---------- */
+/* @@@@@@@@@@@@@@@@@ 8. CHECKOUT @@@@@@@@@@@@@@@@@ */
 checkoutBtn.addEventListener("click", () => {
   if (cart.length === 0) return;
 
@@ -434,7 +432,7 @@ checkoutForm.addEventListener("submit", (event) => {
   if (!/^(09|\+639)\d{9}$/.test(phone)) return showFormError("Enter a valid mobile number, like 09171234567.");
   if (address.length < 10) return showFormError("Enter your complete delivery address.");
 
-  // if all good: make an order number, show the success view, and empty the cart ulit
+  // if all goods: make an order number, show the success view, and empty the cart ulit
   const orderNo = "AST-" + Math.floor(100000 + Math.random() * 900000);
   const total = getCartTotal();
   const paymentLabel = payment === "gcash" ? "GCash" : "cash on delivery";
@@ -456,9 +454,8 @@ function showFormError(message) {
 }
 
 
-/* ---------- 9. INQUIRY FORM (Contacts section) ----------
-   Static site lang tayo, so walang totoong email na nape-send.
-   JS validates the fields lang, then shows a fake success message. */
+/* @@@@@@@@@@@@@@@@@ 9. INQUIRY FORM (Contacts section) @@@@@@@@@@@@@@@@@
+   eme eme send lang. js only validates the inputs ng user tas may fake mssg if success */
 inquiryForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -467,7 +464,7 @@ inquiryForm.addEventListener("submit", (event) => {
   const email = data.get("email").trim();
   const message = data.get("message").trim();
 
-  inquirySuccess.hidden = true;   // hide any old success message while we re-check
+  inquirySuccess.hidden = true;   // hide any old success message
 
   if (name === "") return showInquiryError("Enter your name.");
   if (!isValidEmail(email)) return showInquiryError("Enter a valid email address.");
@@ -483,15 +480,15 @@ function showInquiryError(message) {
 }
 
 
-/* ---------- 10. LOG OUT ----------
-   Clears the saved session and sends the shopper back to the login page.
-   (See 0068PayodLogin.html / 0068PayodLogin.js for how a session is made.) */
+/* @@@@@@@@@@@@@@@@@ 10. LOG OUT @@@@@@@@@@@@@@@@@
+   clears the saved session tas balik login page.
+   (nasa Login.html & Login.js yung infos) */
 logoutBtn.addEventListener("click", () => {
   localStorage.removeItem("astra-session");
   window.location.href = "0068PayodLogin.html";
 });
 
 
-/* ---------- 11. START EVERYTHING ---------- */
+/* @@@@@@@@@@@@@@@@@ 11. START EVERYTHING @@@@@@@@@@@@@@@@@ */
 renderProducts();
 renderCart();
